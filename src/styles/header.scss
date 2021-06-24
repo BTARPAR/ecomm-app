@@ -1,0 +1,45 @@
+@import "variables";
+
+#header {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  justify-content: space-between;
+  border: 1px solid $silver;
+  background-color: #0271dc;
+  box-shadow: 0 4px 2px -2px $silver-chalice;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+
+  & > :first-child {
+    padding-left: 2rem;
+  }
+
+  & > :last-child {
+    padding-right: 2rem;
+  }
+
+  input {
+    padding: 5px 5px 5px 1rem;
+    font-style: italic;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-size: 15px;
+    }
+  }
+
+  .cart-counter {
+    top: -3px;
+    left: -10px;
+  }
+  .translate {
+    transform: translateX(35%) translateY(-50%)
+  }
+
+  .translate-single {
+    transform: translateX(120%) translateY(-50%)
+  }
+}

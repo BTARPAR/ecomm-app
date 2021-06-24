@@ -1,0 +1,68 @@
+@import "~tachyons";
+
+body {
+  margin: 0;
+  font-size: 16px;
+}
+
+.loading {
+  position: relative;
+  padding-top: 1.5%;
+}
+
+.app {
+  transition: margin-left .5s;
+}
+
+@media only screen and (max-width: 481px) {
+  .dn-s {
+    display: none;
+  }
+  .tc-s {
+    text-align: center;
+  }
+  .ml-s {
+    margin-left: 0;
+  }
+  .w-60-m {
+    width: 60%;
+  }
+  .w3-s {
+    width: 4rem;
+  }
+  .pa-3-s {
+    padding: 1rem;
+  }
+  .icon-s {
+    font-size: 2rem;
+  }
+  .pl-3-s {
+    padding-left: 1rem;
+  }
+  .ds-center {
+    margin: 1rem;
+  }
+
+  .ds-ml {
+    margin-left: 0;
+  }
+
+  .ds-flex-column {
+    flex-direction: column;
+  }
+
+  .ds-w-100 {
+    width: 70%;
+  }
+
+  .ds-mlt3 {
+    margin: 0 1rem
+  }
+  .ds-center {
+    margin: 0 auto;
+  }
+
+  .ds-ml-6 {
+    margin-left: 6rem;
+  }
+}
