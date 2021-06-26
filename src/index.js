@@ -6,14 +6,31 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./store";
-import {faPlus, faShoppingBag, faCircle, faBars, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {
+    faPlus,
+    faShoppingBag,
+    faCircle,
+    faBars,
+    faArrowLeft,
+    faUser,
+    faEnvelope,
+    faAddressCard,
+    faCity,
+    faArrowAltCircleRight
+} from "@fortawesome/free-solid-svg-icons";
 
 library.add({
     faPlus,
     faShoppingBag,
     faCircle,
     faBars,
-    faArrowLeft
+    faArrowLeft,
+    faArrowAltCircleRight,
+
+    faUser,
+    faEnvelope,
+    faAddressCard,
+    faCity,
 })
 
 ReactDOM.render(

@@ -1,10 +1,11 @@
 import {ADD_TO_CART, GET_ALL_PRODUCTS, LOADING, SIDEBAR_HANDLER} from "../actions";
 import {combineReducers} from 'redux'
+import useLocalStorage from "local-storage";
 
 const defaultState = {
     products: [],
     loading: false,
-    cart: {},
+    cart: useLocalStorage.get('ecomm-app') || {},
     sidebar: false
 }
 
@@ -14,19 +15,21 @@ const preference = (state = defaultState, action) => {
             return {...state, products: action.payload};
 
         case LOADING:
-            console.log({state})
             return {...state, loading: !state.loading};
 
         case ADD_TO_CART:
-            console.log(action.payload)
             const {_id: id, ...remainProduct} = action.payload
             const cart = state.cart
 
             if (!!Object.keys(cart).length && Object.keys(cart).includes(id)) {
                 const {count, ...remainObj} = cart[id]
-                return {...state, cart: {...cart, [id]: {count: count + 1, ...action.payload}}};
+                const updatedCart = {...cart, [id]: {count: count + 1, ...action.payload}}
+                useLocalStorage.set('ecomm-app', updatedCart)
+                return {...state, cart: updatedCart};
             } else {
-                return {...state, cart: {...cart, [id]: {count: 1, ...action.payload}}};
+                const updatedCart = {...cart, [id]: {count: 1, ...action.payload}}
+                useLocalStorage.set('ecomm-app', updatedCart)
+                return {...state, cart: updatedCart};
             }
 
         case SIDEBAR_HANDLER:

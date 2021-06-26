@@ -22,7 +22,7 @@ const Homepage = () => {
             })
     }, [])
 
-    const renderProducts = [...products, ...products, ...products].map((product) => {
+    const renderProducts = products.map((product) => {
         return <ProductTile product={product} key={product._id} redirect={() => history.push(`/product-detail/${product._id}`)}/>
     })
 
@@ -44,7 +44,7 @@ const Homepage = () => {
                         <img src={image3} className={'h-100'} height={500} width={500} alt={'ad3'}/>
                     </div>
                 </Carousel>
-                <div className={'flex flex-wrap ma5 justify-center'}>
+                <div className={'flex flex-wrap ma5 justify-around'}>
                     {homepage.map((product) => {
                         return (
                             <ProductTile product={product} key={product._id}

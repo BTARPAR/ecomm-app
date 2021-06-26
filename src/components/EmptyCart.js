@@ -8,9 +8,6 @@ const EmptyCart = () => {
             <div>
                 <div>
                     <div className="card">
-                        <div className="card-header">
-                            <h2>Cart</h2>
-                        </div>
                         <div className="card-body cart">
                             <div className="tc">
                                 <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"

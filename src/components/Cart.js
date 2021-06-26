@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import '../styles/cart.scss'
 import {useSelector} from "react-redux";
@@ -14,7 +14,7 @@ const Cart = () => {
 
     const [discount, setDiscount] = useState(0)
 
-    if(!Object.keys(cart).length) return <EmptyCart/>
+    if (!Object.keys(cart).length) return <EmptyCart/>
 
     const findDiscount = (e) => {
         if (!!e.target.value) {
@@ -69,52 +69,54 @@ const Cart = () => {
 
 
     return (
-        <div className='card mt5'>
-            <div className='flex justify-between flex-column-m'>
-                <div className='cart w-100'>
-                    <div className='f3 b'>
-                        <h4>
-                            <b>Shopping Cart</b>
-                        </h4>
-                        <div className='align-self-center text-right gray'>{Object.keys(cart).length} items</div>
+        <div className='cart-container'>
+            <div className='card mt5'>
+                <div className='flex justify-between flex-column-m'>
+                    <div className='cart w-100'>
+                        <div className='f3 b'>
+                            <h4>
+                                <b>Shopping Cart</b>
+                            </h4>
+                            <div className='align-self-center text-right gray'>{Object.keys(cart).length} items</div>
+                        </div>
+
+                        {renderCartProducts}
+
+                        <div className='back-to-shop gray pointer' onClick={history.goBack}>
+                            <FontAwesomeIcon icon={'arrow-left'}/>
+                            <span className='pa3'>Back to shop</span>
+                        </div>
                     </div>
 
-                    {renderCartProducts}
-
-                    <div className='back-to-shop gray pointer' onClick={history.goBack}>
-                        <FontAwesomeIcon icon={'arrow-left'}/>
-                        <span className='pa3'>Back to shop</span>
-                    </div>
-                </div>
-
-                <div className='summary'>
-                    <div>
-                        <h5><b>Summary</b></h5>
-                    </div>
-                    <hr/>
-                    <div className='flex justify-between'>
-                        <div style={{paddingLeft: 0}}>Total Items <strong>{totalCount}</strong></div>
-                        <div className='text-right b'>$ {Number(totalPrice.toFixed(2))}</div>
-                    </div>
-                    <div>
-                        <p>GIVE CODE</p>
-                        <input id='code' placeholder='Type your code' onChange={findDiscount}/>
-                    </div>
-                    <div className='flex justify-between' style={{
-                        borderTop: '1px solid rgba(0,0,0,.1)',
-                        padding: '2vh 0'
-                    }}>
-                        <div className='b'>TOTAL PRICE</div>
-                        <div className='text-right b'>$ {totalPrice - (totalPrice * discount / 100)}</div>
-                    </div>
-                    <div className={'tc mt3'}>
-                        <button className='cta'>
-                            <span>CHECKOUT</span>
-                            <svg width='13px' height='10px' viewBox='0 0 13 10'>
-                                <path d='M1,5 L11,5'></path>
-                                <polyline points='8 1 12 5 8 9'></polyline>
-                            </svg>
-                        </button>
+                    <div className='summary'>
+                        <div>
+                            <h5><b>Summary</b></h5>
+                        </div>
+                        <hr/>
+                        <div className='flex justify-between'>
+                            <div style={{paddingLeft: 0}}>Total Items <strong>{totalCount}</strong></div>
+                            <div className='text-right b'>$ {Number(totalPrice.toFixed(2))}</div>
+                        </div>
+                        <div>
+                            <p>GIVE CODE</p>
+                            <input id='code' placeholder='Type your code' onChange={findDiscount}/>
+                        </div>
+                        <div className='flex justify-between' style={{
+                            borderTop: '1px solid rgba(0,0,0,.1)',
+                            padding: '2vh 0'
+                        }}>
+                            <div className='b'>TOTAL PRICE</div>
+                            <div className='text-right b'>$ {totalPrice - (totalPrice * discount / 100)}</div>
+                        </div>
+                        <div className={'tc mt3'}>
+                            <Link className='cta' to='/checkout'>
+                                <span>CHECKOUT</span>
+                                <svg width='13px' height='10px' viewBox='0 0 13 10'>
+                                    <path d='M1,5 L11,5'></path>
+                                    <polyline points='8 1 12 5 8 9'></polyline>
+                                </svg>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

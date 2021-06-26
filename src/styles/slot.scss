@@ -1,0 +1,43 @@
+
+.slot-container {
+  width: 100%;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column {
+    width: 20%;
+    padding: 0 10px;
+    margin: 2rem;
+    position: relative;
+
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      background-color: #f1f1f1;
+    }
+
+    span {
+      position: absolute;
+      top: 40%;
+      right: 3rem;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 2rem;
+
+      &:first-child {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+}

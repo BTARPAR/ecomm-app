@@ -17,8 +17,8 @@ const ProductTile = ({
     const dispatch = useDispatch()
 
     return (
-        <div className='mb3 pb3 ph1 pa0-xl bb b--gray w25'>
-            <div className="sans-serif mid-gray relative flex flex-column w5 pointer ">
+        <div className='mb3 pb3 ph1 pa0-xl b--gray w25 pa3 shadow-5 grow br4'>
+            <div className="sans-serif mid-gray relative flex flex-column w5 pointer">
                 <span className="absolute w-100 h-100 z-1" onClick={redirect}></span>
                 <div className="h2 relative mv2"></div>
                 <div className="relative overflow-hidden"
@@ -31,10 +31,10 @@ const ProductTile = ({
                      }}>
                     <img src={img} className="absolute top-0 left-0" data-testid="productTileImage" alt=""/>
                 </div>
-
-                <div className="b f5 black mr1 mr2-xl lh-copy f4-l" aria-hidden="true">$994.97</div>
-                <span className="f6 f5-l normal dark-gray mb0 mt1 lh-title">{name}</span>
-                <div className="mt2 flex items-center">
+                <div className='pa3'>
+                    <div className="b f5 black mr1 mr2-xl lh-copy f4-l" aria-hidden="true">$994.97</div>
+                    <span className="f6 f5-l normal dark-gray mb0 mt1 lh-title">{name}</span>
+                    <div className="mt2 flex items-center">
                 <span className='w4'>
                     <StarRatings
                         rating={review}
@@ -42,6 +42,7 @@ const ProductTile = ({
                         starSpacing="1px"
                     /> 8
                 </span>
+                    </div>
                 </div>
                 <div className="absolute right-0 right-1-l right-2-xl z-2">
                     <button type="button" onClick={() => dispatch(addToCart(product))}

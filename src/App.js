@@ -10,6 +10,10 @@ import Login from "./components/Login";
 import ProductDetailPage from "./components/Product";
 import Cart from "./components/Cart";
 import Sidebar from "./components/Sidebar";
+import Checkout from "./components/Checkout";
+import AccountPage from "./components/AccountPage";
+import Footer from "./components/Footer";
+import SignUp from "./components/SignUp";
 import './App.scss';
 
 
@@ -28,7 +32,11 @@ function App() {
                     <Route exact path="/login" children={<Login/>}/>
                     <Route exact path="/product-detail/:id" children={<ProductDetailPage/>}/>
                     <Route exact path="/cart" children={<Cart/>}/>
+                    <Route exact path="/checkout" children={<Checkout/>}/>
+                    <Route exact path="/account" children={<AccountPage/>}/>
+                    <Route exact path="/signup" children={<SignUp/>}/>
                 </Switch>
+                <Footer/>
             </div>
         </Router>
     );

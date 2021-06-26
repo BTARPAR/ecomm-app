@@ -54,10 +54,10 @@ const Header = () => {
             <div className={'flex items-center'}>
                 {!sidebar &&
                 <FontAwesomeIcon icon={'bars'} onClick={() => dispatch(sidebarHandler())} color={'#FFFFFF'}/>}
-                <img src={logo} width="100" onClick={() => {
-                    history.push('/')
-                    dispatch(setProductsData([]))
-                }} alt={'ecomm-logo'} className="pointer"/>
+                {/*<img src={logo} width="100" onClick={() => {*/}
+                {/*    history.push('/')*/}
+                {/*    dispatch(setProductsData([]))*/}
+                {/*}} alt={'ecomm-logo'} className="pointer"/>*/}
             </div>
             <div className="dn-s">
                 <form onSubmit={search}>
