@@ -6,7 +6,7 @@ const defaultState = {
     products: [],
     loading: false,
     cart: useLocalStorage.get('ecomm-app') || {},
-    sidebar: false
+    sidebar: true
 }
 
 const preference = (state = defaultState, action) => {

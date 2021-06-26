@@ -18,9 +18,16 @@
     color: #000;
     display: block;
     transition: 0.3s;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
 
     &:hover {
-      color: #d2d2d2;
+      border-radius: 10px;
+      background-color: rgba(2, 113, 220, 0.62);
     }
   }
 
@@ -30,5 +37,38 @@
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+
+  .dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      padding-right: 1rem;
+    }
+  }
+
+  .dropdown-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 3rem;
+
+    a {
+      padding: 0.5rem;
+
+      &:hover {
+        border-radius: 10px;
+        background-color: rgba(2, 113, 220, 0.62);
+      }
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 }

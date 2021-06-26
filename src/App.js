@@ -29,6 +29,7 @@ function App() {
                 <Header/>
                 <Switch>
                     <Route exact path="/" children={<Homepage/>}/>
+                    <Route exact path="/search/:query" children={<Homepage/>}/>
                     <Route exact path="/login" children={<Login/>}/>
                     <Route exact path="/product-detail/:id" children={<ProductDetailPage/>}/>
                     <Route exact path="/cart" children={<Cart/>}/>

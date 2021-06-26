@@ -3,11 +3,11 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import '../styles/checkout.scss'
 import {defaultAddress, defaultPayment} from "../utils/constant";
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const Checkout = () => {
     const {cart} = useSelector((state) => state.preference);
-
+    const history = useHistory()
     const [address, setAddress] = useState(defaultAddress)
     const [payment, setPayment] = useState(defaultPayment)
     const checkoutCart = Object.keys(cart)
@@ -99,7 +99,8 @@ const Checkout = () => {
 
                         </div>
                         <div className='tc ma3'>
-                            <input type='submit' value='Pay' className='btn w-30 grow'/>
+                            <input type='submit' value='Pay' className='btn w-30 grow'
+                                   onClick={() => history.push('/')}/>
                         </div>
                     </form>
                 </div>

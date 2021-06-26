@@ -16,7 +16,8 @@ import {
     faEnvelope,
     faAddressCard,
     faCity,
-    faArrowAltCircleRight
+    faArrowAltCircleRight,
+    faCaretDown
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add({
@@ -31,6 +32,7 @@ library.add({
     faEnvelope,
     faAddressCard,
     faCity,
+    faCaretDown
 })
 
 ReactDOM.render(
