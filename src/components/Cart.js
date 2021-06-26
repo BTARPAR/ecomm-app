@@ -109,7 +109,7 @@ const Cart = () => {
                             <div className='text-right b'>$ {totalPrice - (totalPrice * discount / 100)}</div>
                         </div>
                         <div className={'tc mt3'}>
-                            <Link className='cta' to='/cart'>
+                            <Link className='cta' to='/checkout'>
                                 <span>CHECKOUT</span>
                                 <svg width='13px' height='10px' viewBox='0 0 13 10'>
                                     <path d='M1,5 L11,5'></path>

@@ -3,14 +3,15 @@ export const defaultAddress = {
     email: '',
     street: '',
     city: '',
-    zip: '',
-    state: ''
+    state: '',
+    zip: ''
 }
 
 export const defaultPayment = {
-    name: '',
-    cardNumber: '',
-    expMonth: '',
-    cvv: '',
-    expYear: ''
+    cc_name: '',
+    cc_no: '',
+    cc_month: '',
+    cc_year: '',
+    cc_cvv: ''
 }
+

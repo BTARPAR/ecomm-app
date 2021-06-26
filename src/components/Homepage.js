@@ -60,7 +60,7 @@ const Homepage = () => {
                     </div>
                 </>}
                 {!homepage.length && !loading && <>
-                    <div className={'flex flex-wrap ma5 justify-around'}>
+                    <div className={'flex flex-wrap ma5 justify-around take-height'}>
                         Not able to find anything. Please search something else.
                     </div>
                 </>}

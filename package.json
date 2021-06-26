@@ -27,7 +27,8 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "react-star-ratings": "^2.3.0",
     "react-responsive-carousel": "^3.2.18",
-    "local-storage": "^2.0.0"
+    "local-storage": "^2.0.0",
+    "moment": "^2.29.1"
   },
   "scripts": {
     "start": "react-scripts start",

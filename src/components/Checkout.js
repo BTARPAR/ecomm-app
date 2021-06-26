@@ -8,8 +8,7 @@ import {Link, useHistory} from "react-router-dom";
 const Checkout = () => {
     const {cart} = useSelector((state) => state.preference);
     const history = useHistory()
-    const [address, setAddress] = useState(defaultAddress)
-    const [payment, setPayment] = useState(defaultPayment)
+    const [form, setForm] = useState({...defaultAddress, ...defaultPayment})
     const checkoutCart = Object.keys(cart)
     let total = 0
     const renderItem = checkoutCart.map((item) => {
@@ -25,9 +24,24 @@ const Checkout = () => {
             </p>
         )
     })
+
     const submitOrder = (e) => {
         e.preventDefault()
-        fetch('/order', {method: 'POST'})
+        const entireOrder = {products: Object.values(cart), ...form, total}
+        fetch('/checkout', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(entireOrder)
+        })
+            .then(() => history.push('/account'))
+    }
+
+    const formHandler = (e) => {
+        console.log("liajhfscc_name")
+        setForm({...form, [e.target.name]: e.target.value})
     }
 
     return (
@@ -42,34 +56,43 @@ const Checkout = () => {
                                     <FontAwesomeIcon icon={'user'}/>
                                     <span className='ph2'>Full Name</span>
                                 </label>
-                                <input type='text' id='fname' name='firstname' placeholder='John M. Doe'/>
+                                <input value={form.fullname} type='text' id='fname' name='fullname'
+                                       placeholder='John M. Doe'
+                                       onChange={formHandler}/>
 
                                 <label htmlFor='email'>
                                     <FontAwesomeIcon icon={'envelope'}/>
                                     <span className='ph2'>Email</span>
                                 </label>
-                                <input type='text' id='email' name='email' placeholder='john@example.com'/>
+                                <input value={form.email} type='text' id='email' name='email'
+                                       placeholder='john@example.com'
+                                       onChange={formHandler}/>
 
                                 <label htmlFor='adr'>
                                     <FontAwesomeIcon icon={'address-card'}/>
                                     <span className='ph2'>Address</span>
                                 </label>
-                                <input type='text' id='adr' name='address' placeholder='542 W. 15th Street'/>
+                                <input value={form.street} type='text' id='adr' name='street'
+                                       placeholder='542 W. 15th Street'
+                                       onChange={formHandler}/>
 
                                 <label htmlFor='city'>
                                     <FontAwesomeIcon icon={'city'}/>
                                     <span className='ph2'>City</span>
                                 </label>
-                                <input type='text' id='city' name='city' placeholder='New York'/>
+                                <input value={form.city} type='text' id='city' name='city' placeholder='New York'
+                                       onChange={formHandler}/>
 
                                 <div className='row'>
                                     <div className='col-50'>
                                         <label htmlFor='state'>State</label>
-                                        <input type='text' id='state' name='state' placeholder='NY'/>
+                                        <input value={form.state} type='text' id='state' name='state' placeholder='NY'
+                                               onChange={formHandler}/>
                                     </div>
                                     <div className='col-50'>
                                         <label htmlFor='zip'>Zip</label>
-                                        <input type='text' id='zip' name='zip' placeholder='10001'/>
+                                        <input value={form.zip} type='text' id='zip' name='zip' placeholder='10001'
+                                               onChange={formHandler}/>
                                     </div>
                                 </div>
                             </div>
@@ -77,22 +100,27 @@ const Checkout = () => {
                             <div className='col-50 container br4 ma5 mt2 mr4 mb0 '>
                                 <h3>Payment</h3>
                                 <label htmlFor='cname'>Name on Card</label>
-                                <input type='text' id='cname' name='cardname' placeholder='John More Doe'/>
+                                <input value={form.cc_name} type='text' id='cname' name='cc_name'
+                                       placeholder='John More Doe' onChange={formHandler}/>
 
                                 <label htmlFor='ccnum'>Credit card number</label>
-                                <input type='text' id='ccnum' name='cardnumber' placeholder='1111-2222-3333-4444'/>
+                                <input value={form.cc_no} type='text' id='ccnum' name='cc_no'
+                                       placeholder='1111-2222-3333-4444' onChange={formHandler}/>
 
                                 <label htmlFor='expmonth'>Exp Month</label>
-                                <input type='text' id='expmonth' name='expmonth' placeholder='September'/>
+                                <input value={form.cc_month} type='text' id='expmonth' name='cc_month'
+                                       placeholder='September' onChange={formHandler}/>
 
                                 <div className='row'>
                                     <div className='col-50'>
                                         <label htmlFor='expyear'>Exp Year</label>
-                                        <input type='text' id='expyear' name='expyear' placeholder='2018'/>
+                                        <input value={form.cc_year} type='text' id='expyear' name='cc_year'
+                                               placeholder='2018' onChange={formHandler}/>
                                     </div>
                                     <div className='col-50'>
                                         <label htmlFor='cvv'>CVV</label>
-                                        <input type='text' id='cvv' name='cvv' placeholder='352'/>
+                                        <input value={form.cc_cvv} type='text' id='cvv' name='cc_cvv' placeholder='352'
+                                               onChange={formHandler}/>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +128,7 @@ const Checkout = () => {
                         </div>
                         <div className='tc ma3'>
                             <input type='submit' value='Pay' className='btn w-30 grow'
-                                   onClick={() => history.push('/')}/>
+                                   onClick={submitOrder}/>
                         </div>
                     </form>
                 </div>
