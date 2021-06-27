@@ -20,7 +20,7 @@ const OrderDetail = () => {
 
     useEffect(() => {
         fetchOrder()
-    }, )
+    }, [])
 
     const {date, total, cc_no, fullname, email, street, state, city, zip, cc_name, products = []} = order
     const FORMATTED_DATE = moment(date).format('L')
@@ -84,7 +84,7 @@ const OrderDetail = () => {
                     <div className='card tc ma2 display-products'>
                         {products.map((product) => {
                             return (
-                                <Link to={`/product-detail/${product._id}`}>
+                                <Link to={`/product-detail/${product._id}`} key={product._id}>
                                     <div className='flex grow justify-around items-center ma3'>
                                         <img src={product.image_url} alt={product.product_name} width='100'/>
                                         <p>{product.product_name}</p>
