@@ -4,7 +4,7 @@ import {
     Route
 } from "react-router-dom";
 import {GuardProvider, GuardedRoute} from 'react-router-guards'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Header from "./components/Header";
 import Homepage from "./components/Homepage";
 import Login from "./components/Login";
@@ -16,21 +16,19 @@ import AccountPage from "./components/AccountPage";
 import Footer from "./components/Footer";
 import SignUp from "./components/SignUp";
 import './App.scss';
+import {HEARTBEAT} from "./utils/constant";
+import {loggedIn} from "./actions";
+import {useEffect} from "react";
+import OrderDetail from "./components/OrderDetail";
 
 const requireLogin = async (to, from, next) => {
     if (to.meta.auth) {
-        await fetch('/heartbeat', {
-            method: 'GET',
-            headers: {
-                credentials: 'include'
-            }
+        HEARTBEAT().then((res) => {
+            if (res.status === 200) next()
+            next.redirect('/login');
+        }).catch(() => {
+            next.redirect('/login');
         })
-            .then((res) => {
-                if (res.status === 201) next();
-                next.redirect('/login');
-            }).catch(() => {
-                next.redirect('/login');
-            })
     } else {
         next();
     }
@@ -38,6 +36,17 @@ const requireLogin = async (to, from, next) => {
 
 function App() {
     const {sidebar} = useSelector((state) => state.preference);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        HEARTBEAT().then((res) => {
+            if (res.status === 200) {
+                dispatch(loggedIn(true))
+            } else {
+                dispatch(loggedIn(false))
+            }
+        })
+    })
 
     return (
         <Router>
@@ -55,6 +64,7 @@ function App() {
                         <Route exact path="/cart" children={<Cart/>}/>
                         <GuardedRoute exact path="/checkout" children={<Checkout/>} meta={{auth: true}}/>
                         <GuardedRoute exact path="/account" children={<AccountPage/>} meta={{auth: true}}/>
+                        <GuardedRoute exact path="/order/:id" children={<OrderDetail/>} meta={{auth: true}}/>
                         <Route exact path="/signup" children={<SignUp/>}/>
                     </Switch>
                     <Footer/>

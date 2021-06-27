@@ -7,7 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import '../styles/sidebar.scss'
 
 const Sidebar = () => {
-    const {sidebar} = useSelector((state) => state.preference);
+    const {sidebar, loggedIn} = useSelector((state) => state.preference);
     const dispatch = useDispatch()
 
     const [dropdown, setDropDown] = useState('')
@@ -26,7 +26,7 @@ const Sidebar = () => {
         }}>
             <span className="closebtn" onClick={() => dispatch(sidebarHandler())}>&times;</span>
 
-            <span className='ma3'><Link to='/account'>My account</Link></span>
+            {loggedIn && <span className='ma3'><Link to='/account'>My account</Link></span>}
 
             <span className="dropdown-btn ma3" onClick={() => dropDownHandler('electronics')}>
                 Electronics

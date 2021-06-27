@@ -1,0 +1,11 @@
+.order-detail {
+  .display-products {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  div:nth-child(2) > .column, div:nth-child(3) > .column {
+    width: 100%;
+  }
+
+}

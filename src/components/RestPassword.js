@@ -4,9 +4,11 @@ import '../styles/resetPassword.scss'
 const ResetPassword = () => {
 
     const [error, setError] = useState({})
+    const [success, setSuccess] = useState(false)
     const [form, setForm] = useState({
         confirm: '',
-        password: ''
+        password: '',
+        email: ''
     })
 
     const checkResetPasswordError = (e) => {
@@ -43,18 +45,28 @@ const ResetPassword = () => {
         }
 
         setError(errorCheck)
+        let notification
 
         if (!Object.keys(errorCheck).filter((error) => errorCheck[error]).length) {
             fetch('/reset', {
                 method: 'POST',
                 headers: {
-                    credentials: 'include'
-                }
+                    credentials: 'include',
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(form)
             })
-                .then((res) => setForm({
-                    confirm: '',
-                    password: ''
-                }))
+                .then((res) => {
+                    setSuccess(true)
+                    clearInterval(notification)
+                    notification = setTimeout(() => setSuccess(false), 3000)
+                    setForm({
+                        confirm: '',
+                        password: '',
+                        email: ''
+                    })
+                })
         }
     }
 
@@ -65,16 +77,20 @@ const ResetPassword = () => {
 
     return (
         <div className='resetPassword'>
+            {success && <span>Password changed successfully</span>}
             <div className="container">
                 <form onSubmit={checkResetPasswordError}>
                     <label htmlFor="password">Current Password</label>
-                    <input type="text" id="password" name="password" required onChange={handleChange}
+                    <input type="password" id="password" name="password" required onChange={handleChange}
                            value={form.password}/>
 
                     <label htmlFor="confirm">Enter new password</label>
                     <input type="password" id="confirm" name="confirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                            required onChange={handleChange} value={form.confirm}/>
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id="email" name="email"
+                           required onChange={handleChange} value={form.email}/>
 
                     <input type="submit" className='grow pointer' value="Submit"/>
                 </form>

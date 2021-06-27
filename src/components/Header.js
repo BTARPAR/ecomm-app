@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useSelector, useDispatch} from "react-redux";
-// import logo from '../assets/logo.png'
 import '../styles/header.scss'
 import {loading, setProductsData, sidebarHandler} from "../actions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

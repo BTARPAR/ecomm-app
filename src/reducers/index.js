@@ -1,4 +1,4 @@
-import {ADD_TO_CART, GET_ALL_PRODUCTS, LOADING, SIDEBAR_HANDLER} from "../actions";
+import {ADD_TO_CART, GET_ALL_PRODUCTS, LOADING, SIDEBAR_HANDLER, USER_LOGIN} from "../actions";
 import {combineReducers} from 'redux'
 import useLocalStorage from "local-storage";
 
@@ -6,7 +6,8 @@ const defaultState = {
     products: [],
     loading: false,
     cart: useLocalStorage.get('ecomm-app') || {},
-    sidebar: true
+    sidebar: true,
+    loggedIn: false
 }
 
 const preference = (state = defaultState, action) => {
@@ -31,9 +32,15 @@ const preference = (state = defaultState, action) => {
                 useLocalStorage.set('ecomm-app', updatedCart)
                 return {...state, cart: updatedCart};
             }
+            return
+        case USER_LOGIN:
+            return {...state, loggedIn: action.payload};
 
         case SIDEBAR_HANDLER:
+            console.log({state})
+
             return {...state, sidebar: !state.sidebar};
+
         default:
             return state;
     }

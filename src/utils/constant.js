@@ -15,3 +15,11 @@ export const defaultPayment = {
     cc_cvv: ''
 }
 
+export const HEARTBEAT = async() =>{
+    return await fetch('/heartbeat', {
+        method: 'GET',
+        headers: {
+            credentials: 'include'
+        }
+    })
+}
