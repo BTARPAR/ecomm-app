@@ -39,7 +39,7 @@ const Header = () => {
             method: 'GET'
         };
 
-        const response = await fetch('/products', requestOptions);
+        const response = await fetch('https://e-comm-service.herokuapp.com/products', requestOptions);
         const data = await response.json()
         dispatch(setProductsData(data))
         dispatch(loading())
