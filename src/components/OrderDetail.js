@@ -20,7 +20,7 @@ const OrderDetail = () => {
 
     useEffect(() => {
         fetchOrder()
-    }, [])
+    }, )
 
     const {date, total, cc_no, fullname, email, street, state, city, zip, cc_name, products = []} = order
     const FORMATTED_DATE = moment(date).format('L')
@@ -65,9 +65,8 @@ const OrderDetail = () => {
 
                 <div className='column pointer flex'>
                     <div className='card grow tc ma2 w-100'>
-                        <h3>Card Details</h3>
-                        <p>{cc_name}</p>
-                        <p>xxxx-xxxx-{cc_no}</p>
+                        <h3>Total Amount</h3>
+                        <p>$ {Number(total).toFixed(2)}</p>
                     </div>
                 </div>
             </div>

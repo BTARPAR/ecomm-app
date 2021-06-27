@@ -1,4 +1,4 @@
-import {ADD_TO_CART, GET_ALL_PRODUCTS, LOADING, SIDEBAR_HANDLER, USER_LOGIN} from "../actions";
+import {ADD_TO_CART, GET_ALL_PRODUCTS, LOADING, SIDEBAR_HANDLER, USER_LOGIN, CLEAR_CART} from "../actions";
 import {combineReducers} from 'redux'
 import useLocalStorage from "local-storage";
 
@@ -19,11 +19,11 @@ const preference = (state = defaultState, action) => {
             return {...state, loading: !state.loading};
 
         case ADD_TO_CART:
-            const {_id: id, ...remainProduct} = action.payload
+            const {_id: id,} = action.payload
             const cart = state.cart
 
             if (!!Object.keys(cart).length && Object.keys(cart).includes(id)) {
-                const {count, ...remainObj} = cart[id]
+                const {count} = cart[id]
                 const updatedCart = {...cart, [id]: {count: count + 1, ...action.payload}}
                 useLocalStorage.set('ecomm-app', updatedCart)
                 return {...state, cart: updatedCart};
@@ -32,7 +32,8 @@ const preference = (state = defaultState, action) => {
                 useLocalStorage.set('ecomm-app', updatedCart)
                 return {...state, cart: updatedCart};
             }
-            return
+        case CLEAR_CART:
+            return {...state, cart: []}
         case USER_LOGIN:
             return {...state, loggedIn: action.payload};
 

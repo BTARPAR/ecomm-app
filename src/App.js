@@ -1,7 +1,7 @@
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
 } from "react-router-dom";
 import {GuardProvider, GuardedRoute} from 'react-router-guards'
 import {useDispatch, useSelector} from "react-redux";
@@ -46,7 +46,7 @@ function App() {
                 dispatch(loggedIn(false))
             }
         })
-    })
+    },[])
 
     return (
         <Router>

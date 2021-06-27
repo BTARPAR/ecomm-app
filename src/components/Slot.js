@@ -20,6 +20,8 @@ const Slot = () => {
     }, [])
 
     const renderOrders = orders.map((order) => {
+        console.log({order})
+
         const {date, total, cc_no, _id} = order
         const FORMATTED_DATE = moment(date).format('L')
         return (
@@ -27,7 +29,7 @@ const Slot = () => {
                 <Link to={`/order/${_id}`}>
                     <div className='card'>
                         <h3>Date: {FORMATTED_DATE}</h3>
-                        <p>Amount: {total}</p>
+                        <p>Amount: $ {Number(total).toFixed(2)}</p>
                         <p>Card used: xxxx-{cc_no}</p>
                     </div>
                     <span>

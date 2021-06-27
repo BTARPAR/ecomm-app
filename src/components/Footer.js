@@ -16,15 +16,15 @@ const Footer = () => {
 
                         <ul className="nav__ul">
                             <li>
-                                <a href="#">Online</a>
+                                Online
                             </li>
 
                             <li>
-                                <a href="#">Print</a>
+                                Print
                             </li>
 
                             <li>
-                                <a href="#">Alternative Ads</a>
+                                Alternative Ads
                             </li>
                         </ul>
                     </li>
@@ -34,15 +34,15 @@ const Footer = () => {
 
                         <ul className="nav__ul nav__ul--extra">
                             <li>
-                                <a href="#">Hardware Design</a>
+                                Hardware Design
                             </li>
 
                             <li>
-                                <a href="#">Software Design</a>
+                                Software Design
                             </li>
 
                             <li>
-                                <a href="#">Digital Signage</a>
+                                Digital Signage
                             </li>
 
                         </ul>
@@ -53,15 +53,15 @@ const Footer = () => {
 
                         <ul className="nav__ul">
                             <li>
-                                <a href="#">Privacy Policy</a>
+                                Privacy Policy
                             </li>
 
                             <li>
-                                <a href="#">Terms of Use</a>
+                                Terms of Use
                             </li>
 
                             <li>
-                                <a href="#">Sitemap</a>
+                                Sitemap
                             </li>
                         </ul>
                     </li>

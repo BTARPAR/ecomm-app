@@ -10,7 +10,7 @@ const EmptyCart = () => {
                     <div className="card">
                         <div className="card-body cart">
                             <div className="tc">
-                                <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
+                                <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" alt={'empty-cart'}
                                      className="img-fluid mb-4 mr-3"/>
                                 <h3><strong>Your Cart is Empty</strong></h3>
                                 <h4>Add something to make me happy :)</h4>

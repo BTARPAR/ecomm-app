@@ -1,13 +1,16 @@
 import React, {useState} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import '../styles/checkout.scss'
-import {defaultAddress, defaultPayment} from "../utils/constant";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useHistory} from "react-router-dom";
+import useLocalStorage from "local-storage";
+import {defaultAddress, defaultPayment} from "../utils/constant";
+import '../styles/checkout.scss'
+import {clearCart} from "../actions";
 
 const Checkout = () => {
     const {cart} = useSelector((state) => state.preference);
     const history = useHistory()
+    const dispatch = useDispatch()
     const [form, setForm] = useState({...defaultAddress, ...defaultPayment})
     const checkoutCart = Object.keys(cart)
     let total = 0
@@ -16,7 +19,7 @@ const Checkout = () => {
         const itemTotal = count * price
         total += itemTotal
         return (
-            <p>
+            <p key={_id}>
                 <span>{count}</span>
                 <span className='ph2'>x</span>
                 <Link to={`/product-detail/${_id}`}>{product_name}</Link>
@@ -37,7 +40,11 @@ const Checkout = () => {
             },
             body: JSON.stringify(entireOrder)
         })
-            .then(() => history.push('/account'))
+            .then(() => {
+                useLocalStorage.clear()
+                dispatch(clearCart())
+                history.push('/account')
+            })
     }
 
     const formHandler = (e) => {
@@ -105,7 +112,7 @@ const Checkout = () => {
 
                                 <label htmlFor='ccnum'>Credit card number</label>
                                 <input value={form.cc_no} type='text' id='ccnum' name='cc_no'
-                                       placeholder='1111-2222-3333-4444' onChange={formHandler} required/>
+                                       placeholder='1111222233334444' onChange={formHandler} required/>
 
                                 <label htmlFor='expmonth'>Exp Month</label>
                                 <input value={form.cc_month} type='text' id='expmonth' name='cc_month'

@@ -3,6 +3,7 @@ export const LOADING = 'LOADING'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const SIDEBAR_HANDLER = 'SIDEBAR_HANDLER'
 export const USER_LOGIN = 'USER_LOGIN'
+export const CLEAR_CART = 'CLEAR_CART'
 
 export const setProductsData = (data) => ({
     type: GET_ALL_PRODUCTS,
@@ -25,4 +26,8 @@ export const sidebarHandler = () => ({
 export const loggedIn = (boolean) => ({
     type: USER_LOGIN,
     payload: boolean
+})
+
+export const clearCart = () => ({
+    type: CLEAR_CART
 })
