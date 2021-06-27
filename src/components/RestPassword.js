@@ -45,7 +45,12 @@ const ResetPassword = () => {
         setError(errorCheck)
 
         if (!Object.keys(errorCheck).filter((error) => errorCheck[error]).length) {
-            fetch('/reset', {method: 'POST'})
+            fetch('/reset', {
+                method: 'POST',
+                headers: {
+                    credentials: 'include'
+                }
+            })
                 .then((res) => setForm({
                     confirm: '',
                     password: ''

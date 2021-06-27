@@ -6,7 +6,7 @@ const Login = () => {
     const [error, setError] = useState(false)
     const [loginForm, setLoginForm] = useState({})
     const history = useHistory()
-    console.log(history)
+
     const login = async (e) => {
         e.preventDefault()
         const urlencoded = new URLSearchParams();
@@ -23,19 +23,17 @@ const Login = () => {
         setError(false)
         const res = await fetch(`/login`, requestOptions);
         if (res.status === 201) {
-            console.log('LOGGED IN')
-            await history.push('/')
+            await history.push('/checkout')
         }
         setError(true)
         setClicked(false)
     }
     const changePath = () => {
-        history.push('signup')
+        history.push('/signup')
     }
     const formHandler = (event) => {
         setLoginForm({...loginForm, [event.target.type]: event.target.value})
     }
-    console.log({loginForm})
     const {email = '', password = ''} = loginForm
     return (
         <div id="Login" className="ds-w-100">

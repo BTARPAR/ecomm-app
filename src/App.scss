@@ -15,6 +15,10 @@ body {
   transition: margin-left .5s;
 }
 
+main {
+  height: 53vh;
+}
+
 @media only screen and (max-width: 481px) {
   .dn-s {
     display: none;

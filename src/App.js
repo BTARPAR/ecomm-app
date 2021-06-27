@@ -3,6 +3,7 @@ import {
     Switch,
     Route
 } from "react-router-dom";
+import {GuardProvider, GuardedRoute} from 'react-router-guards'
 import {useSelector} from "react-redux";
 import Header from "./components/Header";
 import Homepage from "./components/Homepage";
@@ -16,29 +17,49 @@ import Footer from "./components/Footer";
 import SignUp from "./components/SignUp";
 import './App.scss';
 
+const requireLogin = async (to, from, next) => {
+    if (to.meta.auth) {
+        await fetch('/heartbeat', {
+            method: 'GET',
+            headers: {
+                credentials: 'include'
+            }
+        })
+            .then((res) => {
+                if (res.status === 201) next();
+                next.redirect('/login');
+            }).catch(() => {
+                next.redirect('/login');
+            })
+    } else {
+        next();
+    }
+};
 
 function App() {
     const {sidebar} = useSelector((state) => state.preference);
 
     return (
         <Router>
-            <Sidebar/>
-            <div className={'app'} style={{
-                marginLeft: sidebar ? '250px' : ''
-            }}>
-                <Header/>
-                <Switch>
-                    <Route exact path="/" children={<Homepage/>}/>
-                    <Route exact path="/search/:query" children={<Homepage/>}/>
-                    <Route exact path="/login" children={<Login/>}/>
-                    <Route exact path="/product-detail/:id" children={<ProductDetailPage/>}/>
-                    <Route exact path="/cart" children={<Cart/>}/>
-                    <Route exact path="/checkout" children={<Checkout/>}/>
-                    <Route exact path="/account" children={<AccountPage/>}/>
-                    <Route exact path="/signup" children={<SignUp/>}/>
-                </Switch>
-                <Footer/>
-            </div>
+            <GuardProvider guards={[requireLogin]}>
+                <Sidebar/>
+                <div className={'app'} style={{
+                    marginLeft: sidebar ? '250px' : ''
+                }}>
+                    <Header/>
+                    <Switch>
+                        <Route exact path="/" children={<Homepage/>}/>
+                        <Route exact path="/search/:query" children={<Homepage/>}/>
+                        <Route exact path="/login" children={<Login/>}/>
+                        <Route exact path="/product-detail/:id" children={<ProductDetailPage/>}/>
+                        <Route exact path="/cart" children={<Cart/>}/>
+                        <GuardedRoute exact path="/checkout" children={<Checkout/>} meta={{auth: true}}/>
+                        <GuardedRoute exact path="/account" children={<AccountPage/>} meta={{auth: true}}/>
+                        <Route exact path="/signup" children={<SignUp/>}/>
+                    </Switch>
+                    <Footer/>
+                </div>
+            </GuardProvider>
         </Router>
     );
 }

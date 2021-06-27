@@ -25,14 +25,15 @@ const Checkout = () => {
         )
     })
 
-    const submitOrder = (e) => {
-        e.preventDefault()
+    const submitOrder = (event) => {
+        event.preventDefault()
         const entireOrder = {products: Object.values(cart), ...form, total}
         fetch('/checkout', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                credentials: 'included'
             },
             body: JSON.stringify(entireOrder)
         })
@@ -40,7 +41,6 @@ const Checkout = () => {
     }
 
     const formHandler = (e) => {
-        console.log("liajhfscc_name")
         setForm({...form, [e.target.name]: e.target.value})
     }
 
@@ -48,7 +48,7 @@ const Checkout = () => {
         <div className='checkout-container'>
             <div className='row'>
                 <div className='col-75'>
-                    <form action={submitOrder}>
+                    <form onSubmit={submitOrder}>
                         <div className='row flex-column'>
                             <div className='col-50 container br4 ma5 mr4'>
                                 <h3>Billing Address</h3>
@@ -58,7 +58,7 @@ const Checkout = () => {
                                 </label>
                                 <input value={form.fullname} type='text' id='fname' name='fullname'
                                        placeholder='John M. Doe'
-                                       onChange={formHandler}/>
+                                       onChange={formHandler} required/>
 
                                 <label htmlFor='email'>
                                     <FontAwesomeIcon icon={'envelope'}/>
@@ -66,7 +66,7 @@ const Checkout = () => {
                                 </label>
                                 <input value={form.email} type='text' id='email' name='email'
                                        placeholder='john@example.com'
-                                       onChange={formHandler}/>
+                                       onChange={formHandler} required/>
 
                                 <label htmlFor='adr'>
                                     <FontAwesomeIcon icon={'address-card'}/>
@@ -74,25 +74,25 @@ const Checkout = () => {
                                 </label>
                                 <input value={form.street} type='text' id='adr' name='street'
                                        placeholder='542 W. 15th Street'
-                                       onChange={formHandler}/>
+                                       onChange={formHandler} required/>
 
                                 <label htmlFor='city'>
                                     <FontAwesomeIcon icon={'city'}/>
                                     <span className='ph2'>City</span>
                                 </label>
                                 <input value={form.city} type='text' id='city' name='city' placeholder='New York'
-                                       onChange={formHandler}/>
+                                       onChange={formHandler} required/>
 
                                 <div className='row'>
                                     <div className='col-50'>
                                         <label htmlFor='state'>State</label>
                                         <input value={form.state} type='text' id='state' name='state' placeholder='NY'
-                                               onChange={formHandler}/>
+                                               onChange={formHandler} required/>
                                     </div>
                                     <div className='col-50'>
                                         <label htmlFor='zip'>Zip</label>
                                         <input value={form.zip} type='text' id='zip' name='zip' placeholder='10001'
-                                               onChange={formHandler}/>
+                                               onChange={formHandler} required/>
                                     </div>
                                 </div>
                             </div>
@@ -101,34 +101,33 @@ const Checkout = () => {
                                 <h3>Payment</h3>
                                 <label htmlFor='cname'>Name on Card</label>
                                 <input value={form.cc_name} type='text' id='cname' name='cc_name'
-                                       placeholder='John More Doe' onChange={formHandler}/>
+                                       placeholder='John More Doe' onChange={formHandler} required/>
 
                                 <label htmlFor='ccnum'>Credit card number</label>
                                 <input value={form.cc_no} type='text' id='ccnum' name='cc_no'
-                                       placeholder='1111-2222-3333-4444' onChange={formHandler}/>
+                                       placeholder='1111-2222-3333-4444' onChange={formHandler} required/>
 
                                 <label htmlFor='expmonth'>Exp Month</label>
                                 <input value={form.cc_month} type='text' id='expmonth' name='cc_month'
-                                       placeholder='September' onChange={formHandler}/>
+                                       placeholder='September' onChange={formHandler} required/>
 
                                 <div className='row'>
                                     <div className='col-50'>
                                         <label htmlFor='expyear'>Exp Year</label>
                                         <input value={form.cc_year} type='text' id='expyear' name='cc_year'
-                                               placeholder='2018' onChange={formHandler}/>
+                                               placeholder='2018' onChange={formHandler} required/>
                                     </div>
                                     <div className='col-50'>
                                         <label htmlFor='cvv'>CVV</label>
                                         <input value={form.cc_cvv} type='text' id='cvv' name='cc_cvv' placeholder='352'
-                                               onChange={formHandler}/>
+                                               onChange={formHandler} required/>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
                         <div className='tc ma3'>
-                            <input type='submit' value='Pay' className='btn w-30 grow'
-                                   onClick={submitOrder}/>
+                            <input type='submit' value='Pay' className='btn w-30 grow'/>
                         </div>
                     </form>
                 </div>

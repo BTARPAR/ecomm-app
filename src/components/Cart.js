@@ -41,15 +41,15 @@ const Cart = () => {
     }
 
     const renderCartProducts = Object.keys(cart).map((product, index) => {
-        const {price, count, product_name} = cart[product]
+        const {price, count, product_name, image_url} = cart[product]
         totalPrice += price * count
         totalCount += count
         return (
             <div className='main align-items-center flex justify-between' key={product}>
-                <img className='img-fluid' src='https://i.imgur.com/1GrakTl.jpg' alt={product_name}/>
+                <img className='img-fluid' src={image_url} alt={product_name}/>
                 <div className='flex flex-column justify-around'>
-                    {!index && <div className='gray'>Shirt</div>}
-                    <div>Cotton T-shirt</div>
+                    {!index && <div className='gray ttc'>Item</div>}
+                    <div>{product_name}</div>
                 </div>
                 <div className='flex flex-column justify-around'>
                     {!index && <span className='gray'>quantity</span>}

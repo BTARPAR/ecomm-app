@@ -8,6 +8,7 @@ const ProductDetailPage = () => {
     const dispatch = useDispatch()
 
     const [product, setProduct] = useState({})
+
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
@@ -20,32 +21,49 @@ const ProductDetailPage = () => {
                 setProduct(data)
             });
     }, [params.id])
-    console.log({product})
 
     const addToBasket = () => {
         dispatch(addToCart(product._id))
     }
     return (
         <div className='flex'>
-            <div className='ba w-100 mt4 ml3'>
-                <div>About this item</div>
-                <p className={'fs-normal ml3 w-80'}>{product.long_description}{product.long_description}{product.long_description}</p>
+            <div className='w-100 mt4 ml4'>
+                <h2>About this item</h2>
+                <p className={'fs-normal ml4 w-80'}>{product.long_description}{product.long_description}{product.long_description}</p>
+                <div className='slot-container flex flex-wrap'>
+                    <div className='column grow pointer'>
+                        <div className='card'>
+                            <h3>Specification</h3>
+                            <p>{product.specification}</p>
+                        </div>
+                    </div>
 
-                <div>Specification</div>
-                <p className={'fs-normal ml3 w-80'}>{product.specification}</p>
+                    <div className='column grow pointer'>
+                        <div className='card'>
+                            <h3>Seller</h3>
+                            <p>{product.seller_name}</p>
+                        </div>
+                    </div>
 
-                <div>Seller</div>
-                <p className={'fs-normal ml3 w-80 ttc'}>{product.seller_name}</p>
+                    <div className='column grow pointer'>
+                        <div className='card'>
+                            <h3>Brand</h3>
+                            <p>{product.brand}</p>
+                        </div>
+                    </div>
 
-                <div>Brand</div>
-                <p className={'fs-normal ml3 w-80 ttc'}>{product.brand}</p>
 
-                {product.returnable && <div className='lh-solid'>
-                    <div>Warranty</div>
-                    <p className={'fs-normal ml3 w-80'}>90 days free return</p>
-                    <p className={'fs-normal ml3 w-80'}>1 year by company</p></div>}
+                    {product.returnable && <div className='column grow pointer'>
+                        <div className='card'>
+                            <h3>Warranty</h3>
+                            <p>{product.brand}</p>
+                            <p>90 days free return</p>
+                            <p>1 year by company</p>
+                        </div>
+                    </div>}
+                </div>
             </div>
-            <div className='ba w-70 flex-column tc'>
+            <div className='w-70 flex-column tc'>
                 <img src={product.image_url} alt={product.product_name}/>
                 <div className={'tc pa3 f3 lh-copy'}>
                     <span>${Number(product.price).toFixed(2)}</span>
