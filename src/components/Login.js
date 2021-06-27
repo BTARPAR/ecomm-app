@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useHistory} from 'react-router-dom'
+import {API_URL} from "../utils/constant";
 
 const Login = () => {
     const [clicked, setClicked] = useState(false)
@@ -21,7 +22,7 @@ const Login = () => {
         };
         setClicked(true)
         setError(false)
-        const res = await fetch(`/login`, requestOptions);
+        const res = await fetch(API_URL('/login'), requestOptions);
         if (res.status === 201) {
             await history.push('/checkout')
         }

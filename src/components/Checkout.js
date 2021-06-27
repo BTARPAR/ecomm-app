@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useHistory} from "react-router-dom";
 import useLocalStorage from "local-storage";
-import {defaultAddress, defaultPayment} from "../utils/constant";
+import {API_URL, defaultAddress, defaultPayment} from "../utils/constant";
 import '../styles/checkout.scss'
 import {clearCart} from "../actions";
 
@@ -31,7 +31,7 @@ const Checkout = () => {
     const submitOrder = (event) => {
         event.preventDefault()
         const entireOrder = {products: Object.values(cart), ...form, total}
-        fetch('/checkout', {
+        fetch(API_URL('/checkout'), {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

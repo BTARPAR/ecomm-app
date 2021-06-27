@@ -15,11 +15,19 @@ export const defaultPayment = {
     cc_cvv: ''
 }
 
-export const HEARTBEAT = async() =>{
-    return await fetch('/heartbeat', {
+export const HEARTBEAT = async () => {
+    return await fetch(API_URL('/heartbeat'), {
         method: 'GET',
         headers: {
             credentials: 'include'
         }
     })
+}
+
+export const API_URL = (endpoint) => {
+    if (window.location.origin === 'https://e-commapp.netlify.app') {
+        return 'https://e-comm-service.herokuapp.com' + endpoint
+    } else {
+        return endpoint
+    }
 }

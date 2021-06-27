@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory} from "react-router-dom";
+import {API_URL} from "../utils/constant";
 
 const SignUp = () => {
     const [form, setForm] = useState({
@@ -22,7 +23,7 @@ const SignUp = () => {
             body: urlencoded,
             credentials: 'include'
         };
-        const res = await fetch(`${process.env.URL}/signup`, requestOptions);
+        const res = await fetch(API_URL(`${process.env.URL}/signup`), requestOptions);
         if (res.status === 201) {
             useHistory.push('/')
         }
@@ -30,7 +31,7 @@ const SignUp = () => {
     const formChangeHandler = (e) => {
         setForm({...form, [e.target.name]: e.target.value})
     }
-    
+
     return (
         <div id="SignUp">
             <main className="pa5  bg-white">

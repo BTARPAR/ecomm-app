@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from "react-redux";
 import '../styles/header.scss'
 import {loading, setProductsData, sidebarHandler} from "../actions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {API_URL} from "../utils/constant";
 
 const Header = () => {
     const {loading: loadingStatus, cart, sidebar} = useSelector((state) => state.preference);
@@ -23,7 +24,7 @@ const Header = () => {
             credentials: 'include'
         };
 
-        await fetch(`/logOut`, requestOptions);
+        await fetch(API_URL('/logOut'), requestOptions);
         const timer = setTimeout(() => {
             dispatch(loading())
             history.push('/login')
@@ -39,7 +40,7 @@ const Header = () => {
             method: 'GET'
         };
 
-        const response = await fetch('https://e-comm-service.herokuapp.com/products', requestOptions);
+        const response = await fetch(API_URL('/products'), requestOptions);
         const data = await response.json()
         dispatch(setProductsData(data))
         dispatch(loading())

@@ -3,11 +3,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import {Link} from "react-router-dom";
 import '../styles/slot.scss'
+import {API_URL} from "../utils/constant";
 
 const Slot = () => {
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        fetch('/orders', {
+        fetch(API_URL('/orders'), {
             method: 'GET',
             headers: {
                 credentials: 'include'

@@ -8,6 +8,7 @@ import image1 from "../assets/sale/1.png";
 import image2 from "../assets/sale/2.png";
 import image3 from "../assets/sale/3.png";
 import '../styles/homepage.scss'
+import {API_URL} from "../utils/constant";
 
 const Homepage = () => {
 
@@ -18,7 +19,7 @@ const Homepage = () => {
 
     useEffect(() => {
         const URL = !!params.query ? `/search/?id=${params.search}` : '/products'
-        fetch(URL, {method: 'GET'})
+        fetch(API_URL(URL), {method: 'GET'})
             .then((res) => res.json())
             .then((res) => {
                 setHomepage([...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res,])

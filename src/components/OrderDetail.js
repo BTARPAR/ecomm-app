@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import moment from "moment";
 import '../styles/order-detail.scss'
+import {API_URL} from "../utils/constant";
 
 const OrderDetail = () => {
     const [order, setOrder] = useState({})
     const params = useParams()
 
     const fetchOrder = async () => {
-        await fetch(`/order/?id=${params.id}`, {
+        await fetch(API_URL(`/order/?id=${params.id}`), {
             method: 'GET',
             headers: {
                 credentials: 'included'

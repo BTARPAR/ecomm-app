@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import '../styles/resetPassword.scss'
+import {API_URL} from "../utils/constant";
 
 const ResetPassword = () => {
 
@@ -48,7 +49,7 @@ const ResetPassword = () => {
         let notification
 
         if (!Object.keys(errorCheck).filter((error) => errorCheck[error]).length) {
-            fetch('/reset', {
+            fetch(API_URL('/reset'), {
                 method: 'POST',
                 headers: {
                     credentials: 'include',

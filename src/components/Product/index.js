@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom"
 import {addToCart} from "../../actions";
+import {API_URL} from "../../utils/constant";
 
 const ProductDetailPage = () => {
     const params = useParams()
@@ -15,7 +16,7 @@ const ProductDetailPage = () => {
             credentials: 'include'
         };
 
-        fetch(`/product/?id=${params.id}`, requestOptions)
+        fetch(API_URL(`/product/?id=${params.id}`), requestOptions)
             .then((res) => res.json())
             .then((data) => {
                 setProduct(data)
