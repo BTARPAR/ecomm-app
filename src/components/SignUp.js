@@ -23,7 +23,7 @@ const SignUp = () => {
             body: urlencoded,
             credentials: 'include'
         };
-        const res = await fetch(API_URL(`${process.env.URL}/signup`), requestOptions);
+        const res = await fetch(API_URL(`/signup`), requestOptions);
         if (res.status === 201) {
             useHistory.push('/')
         }

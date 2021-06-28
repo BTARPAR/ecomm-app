@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useSelector, useDispatch} from "react-redux";
-import '../styles/header.scss'
 import {loading, setProductsData, sidebarHandler} from "../actions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {API_URL} from "../utils/constant";
+import shop from '../assets/shop.svg'
+import '../styles/header.scss'
 
 const Header = () => {
     const {loading: loadingStatus, cart, sidebar} = useSelector((state) => state.preference);
@@ -54,10 +55,10 @@ const Header = () => {
             <div className={'flex items-center'}>
                 {!sidebar &&
                 <FontAwesomeIcon icon={'bars'} onClick={() => dispatch(sidebarHandler())} color={'#FFFFFF'}/>}
-                {/*<img src={logo} width="100" onClick={() => {*/}
-                {/*    history.push('/')*/}
-                {/*    dispatch(setProductsData([]))*/}
-                {/*}} alt={'ecomm-logo'} className="pointer"/>*/}
+                <img src={shop} width="50" onClick={() => {
+                    history.push('/')
+                    dispatch(setProductsData([]))
+                }} alt={'ecomm-logo'} className="pointer"/>
             </div>
             <div className="dn-s">
                 <form onSubmit={search}>

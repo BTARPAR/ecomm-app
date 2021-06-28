@@ -17,7 +17,7 @@ const ProductTile = ({
     const dispatch = useDispatch()
 
     return (
-        <div className='mb3 pb3 ph1 pa0-xl b--gray w25 pa3 shadow-5 grow br4'>
+        <div className='mb3 pb3 ph1 pa0-xl b--gray w25 pa3 shadow-5 br4'>
             <div className="sans-serif mid-gray relative flex flex-column w5 pointer">
                 <span className="absolute w-100 h-100 z-1" onClick={redirect}></span>
                 <div className="h2 relative mv2"></div>
@@ -44,7 +44,7 @@ const ProductTile = ({
                 </span>
                     </div>
                 </div>
-                <div className="absolute right-0 right-1-l right-2-xl z-2">
+                <div className="absolute right-0 right-1-l right-2-xl z-2 grow">
                     <button type="button" onClick={() => dispatch(addToCart(product))}
                             className="pointer bn bg-blue hover-bg-dark-blue white h2 w2 flex items-center justify-center br4 shadow-1">
                         <FontAwesomeIcon icon={'plus'}/>
