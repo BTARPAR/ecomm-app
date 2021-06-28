@@ -27,10 +27,8 @@ const Login = () => {
         setError(false)
         const res = await fetch(API_URL('/login'), requestOptions);
         if (res.status === 201) {
-            setTimeout(()=> {
-                history.push('/checkout')
-                dispatch(loggedIn(true))
-            }, 1500)
+            history.push('/checkout')
+            dispatch(loggedIn(true))
         }
         setError(true)
         setClicked(false)
