@@ -52,10 +52,10 @@ const ResetPassword = () => {
             fetch(API_URL('/reset'), {
                 method: 'POST',
                 headers: {
-                    credentials: 'include',
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify(form)
             })
                 .then((res) => {

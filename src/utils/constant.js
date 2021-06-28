@@ -18,10 +18,7 @@ export const defaultPayment = {
 export const HEARTBEAT = async () => {
     return await fetch(API_URL('/heartbeat'), {
         method: 'GET',
-        headers: {
-            credentials: 'include',
-            'Access-Control-Allow-Credentials': true
-        }
+        credentials: 'include',
     })
 }
 

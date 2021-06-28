@@ -10,9 +10,7 @@ const Slot = () => {
     useEffect(() => {
         fetch(API_URL('/orders'), {
             method: 'GET',
-            headers: {
-                credentials: 'include'
-            }
+            credentials: 'include'
         })
             .then((res) => res.json())
             .then((orders) => {

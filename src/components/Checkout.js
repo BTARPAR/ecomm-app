@@ -36,8 +36,8 @@ const Checkout = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                credentials: 'included'
             },
+            credentials: 'included',
             body: JSON.stringify(entireOrder)
         })
             .then(() => {
