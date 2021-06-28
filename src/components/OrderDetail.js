@@ -11,7 +11,7 @@ const OrderDetail = () => {
     const fetchOrder = async () => {
         await fetch(API_URL(`/order/?id=${params.id}`), {
             method: 'GET',
-            credentials: 'included'
+            credentials: 'include'
         })
             .then((res) => res.json())
             .then((res) => setOrder(res))

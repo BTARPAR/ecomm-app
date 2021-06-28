@@ -1,12 +1,15 @@
 import React, {useState} from "react";
 import {useHistory} from 'react-router-dom'
 import {API_URL} from "../utils/constant";
+import {loggedIn} from "../actions";
+import {useDispatch} from "react-redux";
 
 const Login = () => {
     const [clicked, setClicked] = useState(false)
     const [error, setError] = useState(false)
     const [loginForm, setLoginForm] = useState({})
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const login = async (e) => {
         e.preventDefault()
@@ -26,6 +29,7 @@ const Login = () => {
         if (res.status === 201) {
             setTimeout(()=> {
                 history.push('/checkout')
+                dispatch(loggedIn(true))
             }, 1500)
         }
         setError(true)
