@@ -19,7 +19,8 @@ export const HEARTBEAT = async () => {
     return await fetch(API_URL('/heartbeat'), {
         method: 'GET',
         headers: {
-            credentials: 'include'
+            credentials: 'include',
+            'Access-Control-Allow-Credentials': true
         }
     })
 }
