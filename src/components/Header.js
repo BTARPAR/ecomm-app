@@ -58,9 +58,9 @@ const Header = () => {
                 <img src={shop} width="50" onClick={() => {
                     history.push('/')
                     dispatch(setProductsData([]))
-                }} alt={'ecomm-logo'} className="pointer"/>
+                }} alt={'ecomm-logo'} className="pa2 pointer"/>
             </div>
-            <div className="dn-s">
+            <div>
                 <form onSubmit={search}>
                     <input type={'text'} className={'br4 ba b--light-blue'}
                            onChange={(e) => setSearchProducts(e.target.value)}
@@ -68,7 +68,7 @@ const Header = () => {
                            placeholder={'Search everything'}/>
                 </form>
             </div>
-            <div className="dn-s">
+            <div>
                 <span className={'relative pointer'} onClick={() => history.push('/cart')}>
                     <span>
                         <FontAwesomeIcon icon={'shopping-bag'} color={'#ffffff'}/>

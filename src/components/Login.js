@@ -30,6 +30,7 @@ const Login = () => {
             history.push('/checkout')
             dispatch(loggedIn(true))
         }
+        dispatch(loggedIn(false))
         setError(true)
         setClicked(false)
     }
@@ -41,8 +42,8 @@ const Login = () => {
     }
     const {email = '', password = ''} = loginForm
     return (
-        <div id="Login" className="ds-w-100">
-            <main className="pa5 ds-login-pa5 bg-white">
+        <div id="Login">
+            <main className="pa5 tc bg-white">
                 <form className="measure center" onSubmit={login}>
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="f4 fw6 ph0 mh0 center">Sign in to you account</legend>
@@ -74,7 +75,7 @@ const Login = () => {
 
                     {!clicked && <div className="lh-copy mt3" onClick={changePath}>
                         <p>Don't have an account?</p>
-                        <span className="f6 link dim black db center">Create an account</span>
+                        <span className="f6 link dim black db center pointer grow">Create an account</span>
                     </div>}
                 </form>
             </main>

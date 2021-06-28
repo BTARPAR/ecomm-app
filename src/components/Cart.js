@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import '../styles/cart.scss'
 import {useSelector} from "react-redux";
 import EmptyCart from "./EmptyCart";
+import '../styles/cart.scss'
 
 
 const Cart = () => {

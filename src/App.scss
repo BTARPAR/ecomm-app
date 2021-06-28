@@ -15,11 +15,13 @@ body {
   transition: margin-left .5s;
 }
 
-main {
-  height: 53vh;
-}
-
 @media only screen and (max-width: 481px) {
+  #header {
+    text-align: center;
+    input {
+      width: 80%;
+    }
+  }
   .dn-s {
     display: none;
   }
@@ -54,10 +56,6 @@ main {
 
   .ds-flex-column {
     flex-direction: column;
-  }
-
-  .ds-w-100 {
-    width: 70%;
   }
 
   .ds-mlt3 {

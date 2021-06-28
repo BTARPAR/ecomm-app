@@ -177,7 +177,7 @@
 
   @media (min-width: 962px) {
     .summary {
-      width: 50%;
+      width: 50% !important;
     }
   }
 
@@ -186,6 +186,10 @@
       border-top-right-radius: unset !important;
       border-bottom-left-radius: 1rem !important;
       border-bottom-right-radius: 1rem !important;
+      margin-top: 3rem!important;
+    }
+    .flex-column-m {
+      flex-direction: column !important;
     }
   }
 }

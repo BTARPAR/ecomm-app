@@ -11,6 +11,7 @@ const SignUp = () => {
 
     })
     const createUser = async (e) => {
+        console.log("joilj")
         e.preventDefault()
         const urlencoded = new URLSearchParams();
         urlencoded.append("email", form.email);
@@ -34,7 +35,7 @@ const SignUp = () => {
 
     return (
         <div id="SignUp">
-            <main className="pa5  bg-white">
+            <main className="pa5 tc bg-white">
                 <form className="measure center" onSubmit={createUser}>
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0 flex flex-column items-center">
                         <legend className="f4 fw6 ph0 mh0">Sign Up</legend>
@@ -63,7 +64,7 @@ const SignUp = () => {
                                    id="lastname" value={form.lastname} onChange={formChangeHandler}/>
                         </div>
                     </fieldset>
-                    <div className="">
+                    <div className="pa4">
                         <input className="b br2 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                                type="submit"
                                value="Sign up"/>
